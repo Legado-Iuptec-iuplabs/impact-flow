@@ -7,7 +7,7 @@ export async function getAISuggestion(
   allContext: Record<string, string>,
   artifactName: string
 ): Promise<string> {
-  const apiKey = process.env.API_KEY;
+  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
   if (!apiKey) throw new Error("API Key not found");
 
   const ai = new GoogleGenAI({ apiKey });
