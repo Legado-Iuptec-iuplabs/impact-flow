@@ -7,10 +7,12 @@ export async function getAISuggestion(
   allContext: Record<string, string>,
   artifactName: string
 ): Promise<string> {
-  const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
+  // Ajustamos para que o nome seja idêntico em todas as linhas
+  const apiKey = import.meta.env.VITE_GEMINI_API_KEY; 
+  
   if (!apiKey) throw new Error("API Key not found");
 
-  const ai = new GoogleGenAI({ apiKey });
+  const ai = new GoogleGenAI(apiKey);
   
   const contextString = Object.entries(allContext)
     .filter(([_, v]) => v && v.trim().length > 0)
