@@ -1,5 +1,4 @@
-
-import { ArtifactSchema } from './types';
+import type { ArtifactSchema } from './types';
 
 export const ARTIFACT_SCHEMAS: Record<string, ArtifactSchema> = {
   IMPACT_FLOW: {
@@ -45,4 +44,12 @@ export const ARTIFACT_SCHEMAS: Record<string, ArtifactSchema> = {
       { id: 'creators', title: 'Criadores de Encanto', placeholder: 'Superando expectativas...', description: 'Diferenciais uau.', colSpan: 2 },
     ]
   }
+};
+
+export const DEFAULT_PROJECT = {
+  name: 'Inovação Disruptiva',
+  author: 'Equipe iuptec',
+  email: 'hello@iuptec.com',
+  artifactType: 'IMPACT_FLOW' as const,
+  content: {}
 };

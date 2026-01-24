@@ -1,6 +1,5 @@
-
 import React, { useState } from 'react';
-import { getAISuggestion } from '../services/geminiService';
+import { getAISuggestion } from '@/services/geminiService';
 
 interface CanvasBoxProps {
   id: string;
@@ -17,7 +16,17 @@ interface CanvasBoxProps {
 }
 
 export const CanvasBox: React.FC<CanvasBoxProps> = ({
-  id, title, placeholder, description, number, value, onChange, allContext, artifactName, colSpan = 4, rowSpan = 1
+  id,
+  title,
+  placeholder,
+  description,
+  number,
+  value,
+  onChange,
+  allContext,
+  artifactName,
+  colSpan = 4,
+  rowSpan = 1
 }) => {
   const [loading, setLoading] = useState(false);
   const isAISolutionField = id === 'ai_solution';
@@ -55,14 +64,20 @@ export const CanvasBox: React.FC<CanvasBoxProps> = ({
             isAISolutionField ? 'text-[#2DD4BF]' : 'text-slate-400'
           }`}>
             {title}
-            {isAISolutionField && <span className="ml-2 text-[8px] bg-[#2DD4BF] text-[#0A0F14] px-1.5 py-0.5 rounded-sm lowercase font-bold">IA CORE</span>}
+            {isAISolutionField && (
+              <span className="ml-2 text-[8px] bg-[#2DD4BF] text-[#0A0F14] px-1.5 py-0.5 rounded-sm lowercase font-bold">
+                IA CORE
+              </span>
+            )}
           </h3>
           <button
             onClick={handleAISuggestion}
             disabled={loading}
             title="Sugerir com IA"
             className={`opacity-0 group-hover:opacity-100 p-1.5 rounded-lg transition-all disabled:opacity-50 ${
-              isAISolutionField ? 'bg-[#2DD4BF] text-[#0A0F14] hover:scale-110' : 'bg-[#2DD4BF]/10 text-[#2DD4BF] hover:bg-[#2DD4BF]/20'
+              isAISolutionField 
+                ? 'bg-[#2DD4BF] text-[#0A0F14] hover:scale-110' 
+                : 'bg-[#2DD4BF]/10 text-[#2DD4BF] hover:bg-[#2DD4BF]/20'
             }`}
           >
             {loading ? (
@@ -79,7 +94,9 @@ export const CanvasBox: React.FC<CanvasBoxProps> = ({
         
         <p className={`text-[9px] leading-tight mb-3 pr-6 italic ${
           isAISolutionField ? 'text-[#2DD4BF]/70' : 'text-slate-500'
-        }`}>{description}</p>
+        }`}>
+          {description}
+        </p>
         
         <textarea
           className={`flex-grow w-full bg-transparent border-none focus:ring-0 placeholder-slate-700 resize-none text-sm leading-relaxed ${

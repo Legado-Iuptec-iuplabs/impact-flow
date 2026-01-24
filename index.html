@@ -1,124 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>iuptec | AI Strategy Architect</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #0A0F14;
-            --surface: #121820;
-            --border: #1E293B;
-            --laranja: #FDB913;
-            --ciano: #2DD4BF;
-            --text-main: #F1F5F9;
-            --text-dim: #94A3B8;
-        }
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
-        .canvas-grid {
-            display: grid;
-            gap: 1px;
-            background-color: var(--border);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-        /* Mobile Grid Fix */
-        @media (max-width: 768px) {
-            .canvas-grid {
-                grid-template-columns: 1fr !important;
-                display: flex;
-                flex-direction: column;
-                gap: 1px;
-            }
-            .canvas-box {
-                grid-column: span 1 !important;
-                grid-row: span 1 !important;
-                min-height: auto !important;
-                padding: 1.5rem !important;
-            }
-        }
-        .canvas-box {
-            background-color: var(--surface);
-            padding: 1.25rem;
-            position: relative;
-            min-height: 180px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .canvas-box:hover {
-            z-index: 20;
-            background-color: #171F29;
-            box-shadow: inset 0 0 0 1px var(--ciano);
-        }
-        .bg-number {
-            position: absolute;
-            bottom: -0.5rem;
-            right: 0.5rem;
-            font-size: 6rem;
-            font-weight: 900;
-            color: rgba(255, 255, 255, 0.03);
-            line-height: 1;
-            z-index: 0;
-            pointer-events: none;
-            user-select: none;
-        }
-        .content-layer {
-            position: relative;
-            z-index: 10;
-        }
-        @media print {
-            .no-print { display: none; }
-            body { background: white; color: black; }
-            .canvas-grid { border: 1px solid #ccc; background-color: #ccc; }
-            .canvas-box { background-color: white; border: 1px solid #eee; }
-            .bg-number { color: #f0f0f0; }
-        }
-        .gradient-text-iup {
-            color: var(--ciano);
-        }
-        .gradient-text-tec {
-            color: var(--laranja);
-        }
-        /* Custom scrollbar for dark mode */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-dark);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--border);
-            border-radius: 10px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #334155;
-        }
-    </style>
-<script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.3/",
-    "react": "https://esm.sh/react@^19.2.3",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "@google/genai": "https://esm.sh/@google/genai@^1.36.0"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
 </head>
 <body>
     <div id="root"></div>
-<script type="module" src="/index.tsx"></script>
+    <script type="module" src="/src/main.tsx"></script>
 </body>
 </html>

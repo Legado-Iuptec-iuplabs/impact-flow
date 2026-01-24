@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #0A0F14;
+    color: #F1F5F9;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .canvas-grid {
+    display: grid;
+    gap: 1px;
+    background-color: #1E293B;
+    border: 1px solid #1E293B;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+
+  .canvas-box {
+    background-color: #121820;
+    padding: 1.25rem;
+    position: relative;
+    min-height: 180px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .canvas-box:hover {
+    z-index: 20;
+    background-color: #171F29;
+    box-shadow: inset 0 0 0 1px #2DD4BF;
+  }
+
+  .bg-number {
+    position: absolute;
+    bottom: -0.5rem;
+    right: 0.5rem;
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .content-layer {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0A0F14;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #1E293B;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+  }
+
+  /* Mobile Grid Fix */
+  @media (max-width: 768px) {
+    .canvas-grid {
+      grid-template-columns: 1fr !important;
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+    
+    .canvas-box {
+      grid-column: span 1 !important;
+      grid-row: span 1 !important;
+      min-height: auto !important;
+      padding: 1.5rem !important;
+    }
+  }
+
+  /* Print styles */
+  @media print {
+    .no-print {
+      display: none;
+    }
+    
+    body {
+      background: white;
+      color: black;
+    }
+    
+    .canvas-grid {
+      border: 1px solid #ccc;
+      background-color: #ccc;
+    }
+    
+    .canvas-box {
+      background-color: white;
+      border: 1px solid #eee;
+    }
+    
+    .bg-number {
+      color: #f0f0f0;
+    }
+  }
+
+  /* Utility classes */
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
