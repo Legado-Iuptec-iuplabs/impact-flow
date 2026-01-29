@@ -12,7 +12,7 @@ interface ImportMetaEnv {
    * API Key para Google Gemini AI
    * Obtenha em: https://aistudio.google.com/app/apikey
    * 
-   * @example 'AIzaSyCUdWbtL66rRnHW3sbfUPjENK12n0brHTs'
+   * @example 'AIzaSyCUdWbtL66rRnHW3UhRtPjENK12n0brHTs'
    */
   readonly VITE_GEMINI_API_KEY: string;
 

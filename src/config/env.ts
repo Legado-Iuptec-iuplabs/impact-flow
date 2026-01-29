@@ -1,5 +1,5 @@
 /**
- * Configurações de ambiente
+ * Configurações de ambiente:
  * Lógica de fallback e validação
  */
 

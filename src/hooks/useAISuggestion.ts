@@ -1,10 +1,5 @@
 import { useState, useCallback } from 'react';
-import { 
-  getAISuggestion, 
-  generateBmgFull, 
-  generateValueMapFull, 
-  refineFullDocument 
-} from '../services/geminiService';
+import { getAISuggestion, generateBmgFull, generateValueMapFull, refineFullDocument } from '../services/geminiService';
 
 export const useAISuggestion = () => {
   const [loading, setLoading] = useState(false);
@@ -23,7 +18,6 @@ export const useAISuggestion = () => {
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Erro ao gerar sugestão';
       setError(errorMsg);
-      // Retorna placeholder em vez de lançar erro
       return `[Placeholder] ${fieldTitle}: Preencha manualmente.`;
     } finally {
       setLoading(false);
@@ -41,7 +35,6 @@ export const useAISuggestion = () => {
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Erro ao gerar BMG';
       setError(errorMsg);
-      // Retorna objeto vazio em vez de lançar erro
       return {};
     } finally {
       setLoading(false);
@@ -59,7 +52,6 @@ export const useAISuggestion = () => {
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Erro ao gerar Mapa de Valor';
       setError(errorMsg);
-      // Retorna objeto vazio em vez de lançar erro
       return {};
     } finally {
       setLoading(false);
@@ -77,7 +69,6 @@ export const useAISuggestion = () => {
     } catch (err) {
       const errorMsg = err instanceof Error ? err.message : 'Erro ao refinar documento';
       setError(errorMsg);
-      // Retorna conteúdo atual em vez de lançar erro
       return currentContent;
     } finally {
       setLoading(false);
