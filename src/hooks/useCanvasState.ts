@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import type { ProjectData, ArtifactType } from '../types';
+import type { ProjectData } from '../types';
 
 export const useCanvasState = (initialProject?: Partial<ProjectData>) => {
   const [project, setProject] = useState<ProjectData>({
