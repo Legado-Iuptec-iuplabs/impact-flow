@@ -126,7 +126,6 @@ export async function generateValueMapFull(
 }
 
 export async function refineFullDocument(
-  artifactName: string,
   currentContent: Record<string, string>
 ): Promise<Record<string, string>> {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
