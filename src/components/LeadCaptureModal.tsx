@@ -46,7 +46,7 @@ export const LeadCaptureModal: React.FC<Props> = ({ problemInput, onComplete }) 
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+    <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
       <div className="bg-[#121820] border border-slate-800 rounded-3xl p-8 w-full max-w-md shadow-2xl">
 
         {/* Cabeçalho */}
@@ -82,7 +82,7 @@ export const LeadCaptureModal: React.FC<Props> = ({ problemInput, onComplete }) 
           />
 
           <input
-            type="tel"
+            type="text"
             placeholder="WhatsApp (opcional)"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
