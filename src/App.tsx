@@ -4,6 +4,7 @@ import { CanvasBox } from "@/components/CanvasBox";
 import { Header } from "@/components/Header";
 import { WelcomeModal } from "@/components/WelcomeModal";
 import { Modal } from "@/components/Modal";
+import { LeadCaptureModal } from "@/components/LeadCaptureModal";
 import { Button } from "@/components/Button";
 import { useCanvasState, useAISuggestion } from '@/hooks';
 import { downloadProject, printCanvas } from "@/utils/exportHelpers";
@@ -16,6 +17,8 @@ const App: React.FC = () => {
   const [isValueModalOpen, setIsValueModalOpen] = useState(false);
   const [tempIdeaText, setTempIdeaText] = useState('');
   const [tempValueContextText, setTempValueContextText] = useState('');
+  const [showLeadCapture, setShowLeadCapture] = useState(false);
+  const [leadCaptured, setLeadCaptured] = useState(false);
   
   const { project, handleFieldChange, updateProject } = useCanvasState();
   const { loading: aiLoading, generateBMG, generateValueMap, refineDocument } = useAISuggestion();
@@ -262,10 +265,30 @@ const App: React.FC = () => {
         show={showWelcome}
         challengeValue={project.content['challenge'] || ''}
         onChallengeChange={(value) => handleFieldChange('challenge', value)}
-        onStartFlow={handleSmartRefine}
+        onStartFlow={() => {
+          if (!leadCaptured) {
+            setShowLeadCapture(true)  // Mostra captura antes de gerar
+          } else {
+            handleSmartRefine()       // Já cadastrado, gera direto
+            setShowWelcome(false)
+          }
+        }}
         onManualEntry={() => setShowWelcome(false)}
         isLoading={aiLoading}
       />
+
+      {/* Modal de Captura de Leads */}
+      {showLeadCapture && (
+        <LeadCaptureModal
+          problemInput={project.content['challenge'] || ''}
+          onComplete={() => {
+            setShowLeadCapture(false)
+            setLeadCaptured(true)
+            handleSmartRefine()
+            setShowWelcome(false)
+          }}
+        />
+      )}
     </div>
   );
 };
