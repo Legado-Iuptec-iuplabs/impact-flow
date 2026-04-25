@@ -15,7 +15,6 @@ export const LeadCaptureModal: React.FC<Props> = ({ problemInput, onComplete }) 
   const [error, setError] = useState('')
 
   const handleSubmit = async () => {
-    // Validação básica
     if (!name.trim()) {
       setError('Por favor, informe seu nome.')
       return
@@ -24,9 +23,9 @@ export const LeadCaptureModal: React.FC<Props> = ({ problemInput, onComplete }) 
       setError('Por favor, informe um email válido.')
       return
     }
+    setError('')
 
     setLoading(true)
-    setError('')
 
     const result = await saveLead({
       name,
@@ -38,11 +37,12 @@ export const LeadCaptureModal: React.FC<Props> = ({ problemInput, onComplete }) 
 
     setLoading(false)
 
-    if (result.success) {
-      onComplete() // Fecha o modal e continua para o canvas
-    } else {
-      setError('Erro ao salvar. Tente novamente.')
+    if (!result.success) {
+      console.error('Falha ao salvar lead no Supabase:', result.error)
     }
+
+    // Prossegue independentemente de erro no Supabase
+    onComplete()
   }
 
   return (
@@ -99,7 +99,6 @@ export const LeadCaptureModal: React.FC<Props> = ({ problemInput, onComplete }) 
             className="w-full px-4 py-3 bg-[#0A0F14] border border-slate-700 rounded-xl text-white placeholder-slate-500 focus:outline-none focus:border-[#2DD4BF] transition-colors"
           />
 
-          {/* Mensagem de erro */}
           {error && (
             <p className="text-red-400 text-sm text-center">{error}</p>
           )}

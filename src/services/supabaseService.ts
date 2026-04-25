@@ -49,6 +49,7 @@ export async function saveLead(data: LeadData): Promise<{ success: boolean; erro
     }])
 
     if (error) {
+      console.error('[Supabase] Erro ao inserir lead:', error.code, error.message)
       // Email duplicado — deixa passar sem travar o usuário
       if (error.code === '23505') return { success: true }
       return { success: false, error: error.message }
