@@ -5,66 +5,91 @@ export const promptTemplates = {
     context: string,
     artifactName: string
   ) => `
-    Você é um Arquiteto de Estratégia e IA Sênior do Impact Flow.
-    Documento: "${artifactName}".
-    Campo: "${fieldTitle}" (${fieldDescription}).
-    Contexto Atual:
-    ${context || "Iniciando agora."}
+Você é um Consultor Sênior de Estratégia e IA com 20 anos de experiência em transformação digital.
 
-    Sua missão: Propor um texto altamente estratégico, curto e inovador.
-    Responda APENAS com a sugestão, sem introduções.
-  `,
+Documento em análise: "${artifactName}"
+Campo a preencher: "${fieldTitle}"
+Propósito do campo: ${fieldDescription}
+
+Contexto do projeto:
+${context || "Projeto em fase inicial — seja propositivo e estratégico."}
+
+Escreva uma resposta direta, densa em conteúdo e acionável para o campo "${fieldTitle}".
+- Seja específico e use linguagem executiva
+- Máximo de 3 linhas
+- NÃO inclua introduções, títulos ou explicações — apenas o conteúdo do campo
+`,
 
   bmgGeneration: (contextInfo: string) => `
-    Aja como um Arquiteto de Modelos de Negócios Sênior. Sua tarefa é preencher TODO o Business Model Canvas (BMG) com base no contexto fornecido.
-    Contexto: ${contextInfo}
+Você é um Especialista em Modelos de Negócio com expertise em IA aplicada ao contexto empresarial.
 
-    Preencha os seguintes campos com textos estratégicos, curtos e profissionais:
-    - kp (Parceiros Chave)
-    - ka (Atividades Chave)
-    - vp (Proposta de Valor) - Este é o coração do modelo.
-    - cr (Relacionamento com Público)
-    - cs (Segmentos de Clientes)
-    - kr (Recursos Chave)
-    - ch (Canais)
-    - rev (Fontes de Receita)
-    - costs (Estrutura de Custos)
+Contexto fornecido:
+${contextInfo}
 
-    Retorne APENAS um JSON puro com essas chaves. Sem explicações ou Markdown.
-  `,
+Com base nesse contexto, preencha o Business Model Canvas completo. Cada campo deve ser específico para o negócio descrito — evite respostas genéricas.
+
+Retorne um JSON com exatamente estas chaves:
+{
+  "kp": "Parceiros estratégicos essenciais para operar e escalar",
+  "ka": "Atividades centrais que geram e entregam valor",
+  "vp": "Proposta de valor diferenciada — o que resolve e por que é único",
+  "cr": "Como a empresa se relaciona e retém cada segmento de cliente",
+  "cs": "Segmentos de clientes prioritários com características específicas",
+  "kr": "Recursos críticos: tecnologia, dados, equipe, IP",
+  "ch": "Canais de aquisição, entrega e pós-venda",
+  "rev": "Fontes de receita com modelo de monetização",
+  "costs": "Principais custos fixos e variáveis da operação"
+}
+
+Retorne APENAS o JSON. Sem Markdown, sem texto adicional.
+`,
 
   valueMapGeneration: (contextInfo: string) => `
-    Aja como um Especialista em Proposta de Valor e Design de Experiência. 
-    Sua missão é preencher o "Mapa de Experiência e Valor" com base no contexto.
-    
-    Contexto: ${contextInfo}
+Você é um especialista em Design de Proposta de Valor (metodologia Osterwalder) com foco em soluções de IA.
 
-    Preencha estes 6 campos (textos curtos e impactantes):
-    - jobs (Tarefas a Executar): O que o cliente está tentando realizar.
-    - pains (Dores Críticas): Frustrações e medos do cliente.
-    - gains (Ganhos Desejados): O que o cliente espera ganhar.
-    - products (Produto/Serviço): Como nossa solução se materializa.
-    - relievers (Analgésicos AI): Como a IA alivia as dores citadas.
-    - creators (Criadores de Encanto): Como geramos valor extra e encanto.
+Contexto:
+${contextInfo}
 
-    Retorne APENAS um JSON puro com essas chaves.
-  `,
+Preencha o Mapa de Valor e Experiência do Cliente com profundidade real — cada campo deve refletir o contexto específico acima.
+
+Retorne um JSON com exatamente estas chaves:
+{
+  "jobs": "O que o cliente precisa realizar — tarefas funcionais, sociais e emocionais",
+  "pains": "Dores críticas: frustrações, riscos, obstáculos que impedem o progresso",
+  "gains": "Resultados e benefícios desejados: o que define sucesso para o cliente",
+  "products": "Como a solução se materializa — produto/serviço concreto com IA",
+  "relievers": "Como a IA elimina ou reduz especificamente cada dor listada",
+  "creators": "Como a solução gera ganhos além do esperado — encantamento e diferenciação"
+}
+
+Retorne APENAS o JSON. Sem Markdown, sem texto adicional.
+`,
 
   documentRefinement: (currentContent: Record<string, string>) => `
-    Aja como o Arquiteto Chefe do Impact Flow. Analise os seguintes inputs:
-    Desafio: ${currentContent.challenge || 'Não definido'}
-    Público: ${currentContent.audience || 'Não definido'}
-    Ativos: ${currentContent.assets || 'Não definido'}
+Você é o Arquiteto Chefe de Estratégia de IA do Impact Flow. Sua missão é transformar inputs brutos em uma arquitetura estratégica de IA coerente e acionável.
 
-    Sua tarefa é preencher o Canvas Estratégico com uma solução proposta real.
-    Campos a preencher no JSON de retorno:
-    - ai_solution: Crie uma arquitetura de IA inovadora que resolve o desafio usando os ativos disponíveis.
-    - legacy_path: Descreva como isso seria feito de forma lenta ou manual hoje.
-    - success_metrics: Defina 2-3 KPIs claros.
-    - implementation: Liste 3 passos práticos para o MVP.
-    - challenge: Refine o texto do desafio para torná-lo mais profissional se necessário.
-    - audience: Refine a descrição do público alvo.
+Inputs do usuário:
+- Desafio central: ${currentContent.challenge || 'Não definido'}
+- Público-alvo: ${currentContent.audience || 'Não definido'}
+- Ativos disponíveis: ${currentContent.assets || 'Não definido'}
 
-    Retorne APENAS um JSON puro com essas chaves. Não inclua Markdown ou explicações.
-  `
+Raciocine sobre o problema e produza uma solução estratégica real:
+
+1. Qual é o problema central não resolvido?
+2. Como a IA pode resolver isso de forma diferenciada?
+3. Quais são os indicadores de sucesso mensuráveis?
+4. Qual é o caminho de implementação mais rápido para validar?
+
+Retorne um JSON com exatamente estas chaves:
+{
+  "challenge": "Versão refinada e profissional do desafio (se já estiver bom, mantenha próximo ao original)",
+  "audience": "Descrição precisa do público-alvo com segmentação relevante",
+  "ai_solution": "Arquitetura de IA detalhada: quais modelos/técnicas, como se integram, qual fluxo de dados, qual impacto direto no desafio",
+  "legacy_path": "Como esse problema é resolvido hoje sem IA — processos manuais, tempo gasto, custo, limitações",
+  "success_metrics": "3 KPIs específicos e mensuráveis com baseline e meta (ex: redução de X% em Y semanas)",
+  "implementation": "3 fases práticas do MVP: O que construir primeiro, como validar, critério de avanço para próxima fase"
+}
+
+Retorne APENAS o JSON. Sem Markdown, sem texto adicional.
+`
 };
